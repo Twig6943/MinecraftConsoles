@@ -322,7 +322,7 @@ set(MINECRAFT_CLIENT_SOURCES
   "InBedChatScreen.cpp"
   "Input.cpp"
   #"iob_shim.asm"
-  "IobShim.c"
+  "IobShim.cpp"
   "ItemFrameRenderer.cpp"
   "ItemInHandRenderer.cpp"
   "ItemRenderer.cpp"

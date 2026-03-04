@@ -7,7 +7,7 @@ set(CMAKE_LINKER lld-link)
 set(CMAKE_C_COMPILER_FRONTEND_VARIANT MSVC)
 set(CMAKE_CXX_COMPILER_FRONTEND_VARIANT MSVC)
 
-add_compile_options(/winsysroot /opt/msvc --target=x86_64-pc-windows-msvc)
+add_compile_options(/winsysroot /opt/msvc --target=x86_64-pc-windows-msvc -fms-compatibility -fms-extensions -fdelayed-template-parsing)
 add_link_options(/winsysroot:/opt/msvc)
 
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)

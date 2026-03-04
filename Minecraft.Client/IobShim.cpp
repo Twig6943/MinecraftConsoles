@@ -12,9 +12,9 @@ __iob_func ENDP
 END
 #endif
 
-extern void* __acrt_iob_func(unsigned int);
+#include <cstdio>
 
-void* __iob_func(void)
-{
-  return __acrt_iob_func(0);
+extern "C" FILE* __cdecl __iob_func ( void ) {
+  static FILE iob [ ] = { *stdin, *stdout, *stderr };
+  return iob;
 }
