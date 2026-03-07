@@ -21,7 +21,6 @@ jobs:
             cmake \
             extra-cmake-modules \
             python3 \
-            wine32 \
             wine64 \
             msitools \
             ca-certificates \
