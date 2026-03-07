@@ -21,11 +21,14 @@ jobs:
             cmake \
             extra-cmake-modules \
             python3 \
+            wine32 \
             wine64 \
             msitools \
             ca-certificates \
             libwbclient0 \
             p7zip-full
+          ln -s /usr/bin/clang-cl{-18,}
+          ln -s /usr/bin/lld-link{-18,}
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -33,8 +36,6 @@ jobs:
       - name: Build
         run: |
           set -e
-          clang-18 --version
-          clang++-18 --version
           mkdir build
           cd build
           export WINDOWS_SDK_PATH="$PWD/my_msvc"
