@@ -27,7 +27,6 @@ jobs:
             libwbclient0 \
             p7zip-full
           sudo ln -s /usr/bin/clang-cl{-18,}
-          sudo ln -s /usr/bin/lld-link{-18,}
 
       - name: Checkout repository
         uses: actions/checkout@v4
