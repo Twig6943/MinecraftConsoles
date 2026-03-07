@@ -26,8 +26,8 @@ jobs:
             ca-certificates \
             libwbclient0 \
             p7zip-full
-          ln -s /usr/bin/clang-cl{-18,}
-          ln -s /usr/bin/lld-link{-18,}
+          sudo ln -s /usr/bin/clang-cl{-18,}
+          sudo ln -s /usr/bin/lld-link{-18,}
 
       - name: Checkout repository
         uses: actions/checkout@v4
