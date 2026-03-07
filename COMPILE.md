@@ -1,6 +1,6 @@
 # Compile Instructions
 
-## Visual Studio (`.sln`)
+## Visual Studio (`.sln`)a
 
 1. Open `MinecraftConsoles.sln` in Visual Studio 2022.
 2. Set `Minecraft.Client` as the Startup Project.
