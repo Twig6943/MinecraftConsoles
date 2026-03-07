@@ -41,6 +41,7 @@ jobs:
           mkdir build
           cd build
 
+          export WINEPREFIX=$PWD/wineprefix
           export WINDOWS_SDK_PATH="$PWD/my_msvc"
           export WINE=$(command -v wine64 || command -v wine || false)
 
