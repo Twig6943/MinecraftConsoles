@@ -33,6 +33,7 @@ jobs:
       - name: Build
         run: |
           set -e
+          clang-cl --version
           mkdir build
           cd build
           export WINDOWS_SDK_PATH="$PWD/my_msvc"
