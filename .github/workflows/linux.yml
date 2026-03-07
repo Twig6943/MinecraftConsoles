@@ -41,7 +41,8 @@ jobs:
           ./msvc-wine/install.sh $(pwd)/my_msvc
           export PATH=$(pwd)/my_msvc/bin/x64:$PATH
           cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=../cmake/LinuxCrosscompile.cmake
-          ninja
+          pkill -9 -f "\\.exe"
+          ninja MinecraftClient.exe
           7z a build.zip .
           EOF
 
