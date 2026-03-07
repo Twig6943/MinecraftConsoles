@@ -31,7 +31,6 @@ jobs:
         run: |
           sudo -u builder sh <<'EOF'
           set -e
-          cd DLL
           export WINDOWS_SDK_PATH="$PWD/my_msvc"
           export WINE=$(command -v wine64 || command -v wine || false)
           $WINE wineboot
@@ -46,6 +45,6 @@ jobs:
       - name: Upload artifact/s
         uses: actions/upload-artifact@v7
         with:
-          name: Build
-          path: |
-            a/
+          name: build
+          path: build.zip
+          archive: false
