@@ -1,0 +1,69 @@
+name: Build (Linux)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:latest
+
+    steps:
+      - name: Install base dependencies
+        run: |
+          dnf -y update
+          dnf -y install \
+            gcc \
+            gcc-c++ \
+            make \
+            sudo \
+            git \
+            clang \
+            lld \
+            ninja-build \
+            cmake \
+            extra-cmake-modules \
+            python3 \
+            wine \
+            msitools \
+            ca-certificates \
+            libwbclient \
+            p7zip \
+            p7zip-plugins
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          set -e
+          mkdir build
+          cd build
+
+          export WINDOWS_SDK_PATH="$PWD/my_msvc"
+          export WINE=$(command -v wine64 || command -v wine || false)
+
+          $WINE wineboot
+
+          git clone https://github.com/mstorsjo/msvc-wine
+
+          ./msvc-wine/vsdownload.py --accept-license --dest $(pwd)/my_msvc
+          ./msvc-wine/install.sh $(pwd)/my_msvc
+
+          export PATH=$(pwd)/my_msvc/bin/x64:$PATH
+
+          cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_TOOLCHAIN_FILE=../cmake/LinuxCrosscompile.cmake
+
+          pkill -9 -f "\\.exe" || true
+
+          ninja MinecraftClient.exe
+
+          7z a build.zip .
+
+      - name: Upload artifact/s
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build/build.zip
